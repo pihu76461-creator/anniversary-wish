@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 2 Year Anniversary 💖</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        overflow-x: hidden;
+        text-align: center;
+        color: #fff;
+    }
+
+    .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 10px;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+        opacity: 0.9;
+        animation: fadeIn 3s ease-in-out;
+    }
+
+    .message-box {
+        background: rgba(255,255,255,0.15);
+        padding: 25px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        max-width: 600px;
+        animation: fadeInUp 2s ease-in-out;
+    }
+
+    .message-box p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+
+    .heart {
+        font-size: 40px;
+        margin-top: 20px;
+        animation: pulse 1.2s infinite;
+    }
+
+    .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+
+    /* Mobile friendly */
+    @media (max-width: 600px) {
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.2rem; }
+        .message-box { padding: 18px; }
+        .message-box p { font-size: 1rem; }
+    }
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="container">
+
+    <h1>Happy 2 Year Anniversary 💕</h1>
+    <h2>Atusha Day Special</h2>
+
+    <div class="message-box">
+        <p>
+            Two years together, and every moment still feels special ✨<br><br>
+            Thank you for all the smiles, the memories, and the happiness you bring into my life.
+            These 2 years have been the most beautiful journey, and I hope we celebrate many more
+            Atusha Days together 💖<br><br>
+            You are not just someone special… you are my favorite person 🌸
+        </p>
+    </div>
+
+    <div class="heart">❤️</div>
+
+    <div class="footer">Made with love 💫</div>
+
+</div>
+
+<script>
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const pieces = [];
+    const numberOfPieces = 150;
+
+    for (let i = 0; i < numberOfPieces; i++) {
+        pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 8 + 2,
+            speed: Math.random() * 3 + 1,
+            color: `hsl(${Math.random() * 360}, 100%, 70%)`
+        });
+    }
+
+    function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        pieces.forEach(p => {
+            p.y += p.speed;
+            if (p.y > canvas.height) p.y = 0;
+
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+        });
+
+        requestAnimationFrame(update);
+    }
+
+    update();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+
+</body>
+</html>
